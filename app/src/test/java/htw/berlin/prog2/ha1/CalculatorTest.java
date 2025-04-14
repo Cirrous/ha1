@@ -123,7 +123,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should add multiple numbers")
-    void testMultipleNumberAddition(){
+    void testMultipleNumberAddition() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
@@ -134,6 +134,25 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after pressing two times the equals key")
+    void testDoubleEqualsKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "60";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
